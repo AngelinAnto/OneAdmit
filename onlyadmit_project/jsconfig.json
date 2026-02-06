@@ -1,0 +1,127 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { base44 } from '@/api/base44Client';
+import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
+import { GraduationCap, Building2, Loader2 } from 'lucide-react';
+import { createPageUrl } from '@/utils';
+import { toast } from 'sonner';
+
+export default function RoleSelection() {
+  const [saving, setSaving] = useState(false);
+  const navigate = useNavigate();
+
+  const selectRole = async (accountType) => {
+    setSaving(true);
+    try {
+      await base44.auth.updateMe({ account_type: accountType });
+      toast.success(`Welcome to OneAdmit!`);
+      
+      if (accountType === 'student') {
+        navigate(createPageUrl('Home'));
+      } else {
+        navigate(createPageUrl('CollegeDashboard'));
+      }
+    } catch (error) {
+      toast.error('Failed to set account type');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-violet-50 via-purple-50 to-indigo-50 flex items-center justify-center p-4">
+      <div className="max-w-4xl w-full">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-12"
+        >
+          <h1 className="text-4xl font-bold mb-3">
+            <span className="bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+              OneAdmit
+            </span>
+          </h1>
+          <p className="text-xl text-gray-700 font-medium">One form. Every future.</p>
+          <p className="text-gray-600 mt-2">Choose your account type to get started</p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.1 }}
+          >
+            <button
+              onClick={() => selectRole('student')}
+              disabled={saving}
+              className="w-full bg-white rounded-3xl p-8 border-2 border-gray-200 hover:border-violet-400 hover:shadow-xl transition-all duration-300 text-left group disabled:opacity-50"
+            >
+              <div className="w-16 h-16 bg-gradient-to-br from-violet-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <GraduationCap className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">I'm a Student</h3>
+              <p className="text-gray-600 mb-4">
+                Apply to multiple colleges with one profile. Track applications and exam schedules.
+              </p>
+              <ul className="space-y-2 text-sm text-gray-600">
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-violet-600 rounded-full" />
+                  Fill profile once, apply everywhere
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-violet-600 rounded-full" />
+                  Book exam slots instantly
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-violet-600 rounded-full" />
+                  Track all applications in one place
+                </li>
+              </ul>
+            </button>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <button
+              onClick={() => selectRole('college')}
+              disabled={saving}
+              className="w-full bg-white rounded-3xl p-8 border-2 border-gray-200 hover:border-indigo-400 hover:shadow-xl transition-all duration-300 text-left group disabled:opacity-50"
+            >
+              <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Building2 className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">I'm a College</h3>
+              <p className="text-gray-600 mb-4">
+                Manage applications, exam slots, and receive payments directly from students.
+              </p>
+              <ul className="space-y-2 text-sm text-gray-600">
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-indigo-600 rounded-full" />
+                  Customize application forms
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-indigo-600 rounded-full" />
+                  Manage exam slots & capacity
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-indigo-600 rounded-full" />
+                  Direct payment processing
+                </li>
+              </ul>
+            </button>
+          </motion.div>
+        </div>
+
+        {saving && (
+          <div className="text-center mt-6">
+            <Loader2 className="w-6 h-6 animate-spin mx-auto text-violet-600" />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

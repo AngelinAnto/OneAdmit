@@ -1,0 +1,212 @@
+{
+  "name": "StudentProfile",
+  "type": "object",
+  "properties": {
+    "first_name": {
+      "type": "string",
+      "description": "First name"
+    },
+    "middle_name": {
+      "type": "string",
+      "description": "Middle name"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "Last name"
+    },
+    "date_of_birth": {
+      "type": "string",
+      "format": "date"
+    },
+    "place_of_birth": {
+      "type": "string"
+    },
+    "citizenship": {
+      "type": "string",
+      "default": "Indian"
+    },
+    "gender": {
+      "type": "string",
+      "enum": [
+        "male",
+        "female",
+        "other"
+      ]
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "General",
+        "OBC",
+        "SC",
+        "ST",
+        "EWS"
+      ]
+    },
+    "aadhar_number": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "district": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "pincode": {
+      "type": "string"
+    },
+    "permanent_address": {
+      "type": "string"
+    },
+    "permanent_state": {
+      "type": "string"
+    },
+    "permanent_district": {
+      "type": "string"
+    },
+    "permanent_city": {
+      "type": "string"
+    },
+    "permanent_pincode": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "alternate_phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "father_name": {
+      "type": "string"
+    },
+    "mother_name": {
+      "type": "string"
+    },
+    "guardian_name": {
+      "type": "string"
+    },
+    "parent_qualification": {
+      "type": "string"
+    },
+    "parent_occupation": {
+      "type": "string"
+    },
+    "parent_annual_income": {
+      "type": "number"
+    },
+    "parent_contact": {
+      "type": "string"
+    },
+    "tenth_board": {
+      "type": "string"
+    },
+    "tenth_school": {
+      "type": "string"
+    },
+    "tenth_year": {
+      "type": "number"
+    },
+    "tenth_marks": {
+      "type": "number",
+      "description": "10th percentage/CGPA"
+    },
+    "twelfth_board": {
+      "type": "string"
+    },
+    "twelfth_school": {
+      "type": "string"
+    },
+    "twelfth_year": {
+      "type": "number"
+    },
+    "twelfth_stream": {
+      "type": "string",
+      "enum": [
+        "science",
+        "commerce",
+        "arts"
+      ]
+    },
+    "twelfth_marks": {
+      "type": "number",
+      "description": "12th percentage/CGPA"
+    },
+    "entrance_exam": {
+      "type": "string",
+      "enum": [
+        "JEE Main",
+        "TNEA",
+        "COMEDK",
+        "Other"
+      ]
+    },
+    "entrance_score": {
+      "type": "number"
+    },
+    "photo_url": {
+      "type": "string"
+    },
+    "tenth_marksheet_url": {
+      "type": "string"
+    },
+    "twelfth_marksheet_url": {
+      "type": "string"
+    },
+    "profile_complete": {
+      "type": "boolean",
+      "default": false
+    },
+    "needs_hostel": {
+      "type": "boolean",
+      "default": false
+    },
+    "needs_scholarship": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "first_name",
+    "last_name",
+    "middle_name",
+    "date_of_birth",
+    "place_of_birth",
+    "citizenship",
+    "gender",
+    "category",
+    "aadhar_number",
+    "address",
+    "state",
+    "district",
+    "city",
+    "pincode",
+    "phone",
+    "alternate_phone",
+    "email",
+    "father_name",
+    "mother_name",
+    "parent_qualification",
+    "parent_occupation",
+    "parent_annual_income",
+    "parent_contact",
+    "tenth_board",
+    "tenth_school",
+    "tenth_year",
+    "tenth_marks",
+    "twelfth_board",
+    "twelfth_school",
+    "twelfth_year",
+    "twelfth_stream",
+    "twelfth_marks"
+  ]
+}
